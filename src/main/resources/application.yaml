@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /app
+
+spring:
+  multipart:
+    max-file-size: 100MB
+    max-request-size: 1000MB
+  mail:
+    username: hcmutesending@gmail.com
+    password: bbut pbzy uiva pged
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+    host: smtp.gmail.com
+    port: 587
+  datasource:
+    url: "jdbc:mysql://localhost:3307/hcmuteforums"
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6380
+jwt:
+  signerKey: "b4ISo6+PT1fY8eppQ564SXabONN945cjuPYa0mTOmPrThHVxEnH7+xxE5RFJCqtk"
+upload:
+  dir: upload/topics/
