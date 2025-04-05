@@ -16,7 +16,7 @@ spring:
     host: smtp.gmail.com
     port: 587
   datasource:
-    url: "jdbc:mysql://localhost:3307/hcmuteforums"
+    url: "jdbc:mysql://localhost:3307/hackathon"
     username: root
     password: root
   jpa:
