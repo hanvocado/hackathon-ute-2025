@@ -24,6 +24,6 @@ public class ProfileUser {
     private int sportActivity;
     private String taste;
 
-    @OneToOne
-    private User user;
+//    @OneToOne
+//    private User user;
 }
