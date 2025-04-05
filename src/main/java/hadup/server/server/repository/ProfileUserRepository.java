@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProfileUserRepository extends JpaRepository<ProfileUser, String> {
-
+    ProfileUser findProfileUserByUser_Email(String email);
 }

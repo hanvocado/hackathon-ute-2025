@@ -21,14 +21,13 @@ import org.springframework.stereotype.Service;
 public class ProfileUserService {
     UserRepository userRepository;
     ProfileUserRepository profileUserRepository;
-    UserMapper userMapper;
     ProfileUserMapper profileUserMapper;
 
     public boolean init(ProfileRequest profileRequest) {
-        profileRequest.setEmail("binhan@hadup.com");
-//        User user = userRepository.findUserByEmail(profileRequest.getEmail()).orElseThrow(() -> new AppException(ErrorCode.USER_NOTEXISTED));
+        profileRequest.setEmail("binh@gmail.com");
+        User user = userRepository.findUserByEmail(profileRequest.getEmail()).orElseThrow(() -> new AppException(ErrorCode.USER_NOTEXISTED));
         ProfileUser profileUser = profileUserMapper.toProfileUser(profileRequest);
-//        profileUser.setUser(user);
+        profileUser.setUser(user);
         profileUserRepository.save(profileUser);
         return true;
     }

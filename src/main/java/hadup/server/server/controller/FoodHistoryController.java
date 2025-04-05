@@ -2,6 +2,8 @@ package hadup.server.server.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hadup.server.server.dto.ApiResponse;
+import hadup.server.server.dto.response.FoodHistoryResponse;
+import hadup.server.server.dto.response.FoodHistoryTotalResponse;
 import hadup.server.server.entity.FoodHistory;
 import hadup.server.server.service.FoodHistoryService;
 import hadup.server.server.service.SalusService;
@@ -25,9 +27,15 @@ import java.util.List;
 class FoodHistoryController {
     FoodHistoryService foodHistoryService;
     @GetMapping
-    public ApiResponse<List<FoodHistory>> getFoodHistory(LocalDate date) {
-        return ApiResponse.<List<FoodHistory>>builder()
+    public ApiResponse<FoodHistoryTotalResponse> getFoodHistoryByDate(LocalDate date) {
+        return ApiResponse.<FoodHistoryTotalResponse>builder()
                 .result(foodHistoryService.getFoodHistoryByDate(date))
+                .build();
+    }
+    @GetMapping("/static")
+    public ApiResponse<List<FoodHistoryTotalResponse>> getFoodHistoryStatic(LocalDate from, LocalDate to) {
+        return ApiResponse.<List<FoodHistoryTotalResponse>>builder()
+                .result(foodHistoryService.getFoodHistoryStatic(from, to))
                 .build();
     }
 }

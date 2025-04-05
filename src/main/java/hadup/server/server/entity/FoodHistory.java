@@ -22,6 +22,7 @@ public class FoodHistory {
     private String userId;
     @ManyToOne
     private Food food;
-    LocalDate createAt;
+    private LocalDate createAt;
+    private String imageUrl;
 
 }

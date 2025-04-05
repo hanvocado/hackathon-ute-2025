@@ -2,13 +2,19 @@ package hadup.server.server.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hadup.server.server.dto.response.FoodImageResponse;
+import hadup.server.server.dto.request.PlanningRequest;
+import hadup.server.server.dto.response.PlanningResponse;
 import hadup.server.server.entity.Food;
 import hadup.server.server.entity.FoodHistory;
+import hadup.server.server.entity.ProfileUser;
+import hadup.server.server.entity.User;
 import hadup.server.server.exception.AppException;
 import hadup.server.server.exception.ErrorCode;
+import hadup.server.server.mapper.ProfileUserMapper;
 import hadup.server.server.repository.FoodHistoryRepository;
 import hadup.server.server.repository.FoodRepository;
+import hadup.server.server.repository.ProfileUserRepository;
+import hadup.server.server.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -36,9 +42,12 @@ import java.util.UUID;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SalusService {
     FoodRepository foodRepository;
+    ProfileUserRepository profileUserRepository;
     FoodHistoryRepository foodHistoryRepository;
+    //object mapper
     ObjectMapper objectMapper = new ObjectMapper();
-
+    ProfileUserMapper userMapper;
+    private final ProfileUserMapper profileUserMapper;
     @NonFinal
     @Value("${upload.dir}")
     String uploadDir;
@@ -55,6 +64,7 @@ public class SalusService {
             FoodHistory foodHistory = new FoodHistory();
             foodHistory.setFood(food);
             foodHistory.setCreateAt(LocalDate.now());
+            foodHistory.setImageUrl(imageUrl);
             foodHistoryRepository.save(foodHistory);
             return true;
         }
@@ -85,5 +95,26 @@ public class SalusService {
             e.printStackTrace();
         }
         return 0;
+    }
+    public PlanningResponse getPlanning(){
+        ProfileUser profileUser = profileUserRepository.findProfileUserByUser_Email("binh@gmail.com");
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        PlanningRequest body = profileUserMapper.toPlanningRequest(profileUser);
+        HttpEntity<PlanningRequest> request = new HttpEntity<>(body, headers);
+
+        String apiUrl = "http://192.168.124.254:8080/api/planning";
+        ResponseEntity<PlanningResponse> response = restTemplate.postForEntity(apiUrl, request, PlanningResponse.class);
+
+        try{
+            // Parse the JSON response
+            return response.getBody();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

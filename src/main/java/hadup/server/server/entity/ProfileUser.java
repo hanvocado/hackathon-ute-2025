@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class ProfileUser {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @JsonIgnore
     private String id;
     private int height;
     private int weight;
@@ -23,6 +24,7 @@ public class ProfileUser {
     private int sportActivity;
     private String taste;
 
-//    @OneToOne
-//    private User user;
+    @OneToOne
+    @JsonIgnore
+    private User user;
 }

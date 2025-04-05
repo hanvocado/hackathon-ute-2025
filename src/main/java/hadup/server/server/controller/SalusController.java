@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hadup.server.server.dto.ApiResponse;
 import hadup.server.server.dto.response.FoodImageResponse;
+import hadup.server.server.dto.response.PlanningResponse;
 import hadup.server.server.service.SalusService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.PublicKey;
 
 @RestController
 @RequestMapping("/salus")
@@ -33,6 +35,13 @@ class SalusController {
     public ApiResponse<Boolean> postFoodImage(String foodName, MultipartFile file) throws IOException {
         return ApiResponse.<Boolean>builder()
                 .result(salusService.imageToFood(file))
+                .build();
+    }
+
+    @GetMapping("/planning")
+    public ApiResponse<PlanningResponse> getPlanning() {
+        return ApiResponse.<PlanningResponse>builder()
+                .result(salusService.getPlanning())
                 .build();
     }
 }
