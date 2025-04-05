@@ -1,5 +1,6 @@
 package hadup.server.server.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -18,6 +19,7 @@ public class Food {
     @Id
     private Long id;
     private String foodName;
+    @JsonIgnore
     private String servingSize;
     private int calories;
     private double fat;

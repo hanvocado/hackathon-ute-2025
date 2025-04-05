@@ -7,22 +7,21 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProfileUser {
+public class FoodHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private int height;
-    private int weight;
-    private int age;
-    private boolean isVegetarian;
-    private int sportActivity;
-    private String taste;
+    @JsonIgnore
+    private String userId;
+    @ManyToOne
+    private Food food;
+    LocalDate createAt;
 
-//    @OneToOne
-//    private User user;
 }
