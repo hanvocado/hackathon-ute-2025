@@ -16,9 +16,9 @@ spring:
     host: smtp.gmail.com
     port: 587
   datasource:
-    url: "jdbc:mysql://localhost:3307/hackathon"
-    username: root
-    password: root
+    url: "jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/salus"
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:666666}
   jpa:
     hibernate:
       ddl-auto: update
