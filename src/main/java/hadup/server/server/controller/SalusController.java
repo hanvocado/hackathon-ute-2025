@@ -3,8 +3,10 @@ package hadup.server.server.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hadup.server.server.dto.ApiResponse;
+import hadup.server.server.dto.request.SummaryRequest;
 import hadup.server.server.dto.response.FoodImageResponse;
 import hadup.server.server.dto.response.PlanningResponse;
+import hadup.server.server.entity.Food;
 import hadup.server.server.service.SalusService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.PublicKey;
+import java.util.List;
 
 @RestController
 @RequestMapping("/salus")
@@ -42,6 +45,13 @@ class SalusController {
     public ApiResponse<PlanningResponse> getPlanning() {
         return ApiResponse.<PlanningResponse>builder()
                 .result(salusService.getPlanning())
+                .build();
+    }
+
+    @GetMapping("/suggestion")
+    public ApiResponse<List<Food>> test(){
+        return ApiResponse.<List<Food>>builder()
+                .result(salusService.getFoodSuggestion())
                 .build();
     }
 }

@@ -21,6 +21,8 @@ public class ProfileUser {
     private int weight;
     private int age;
     private boolean isVegetarian;
+    @Builder.Default
+    private boolean homeCook = false;
     private int sportActivity;
     private String taste;
 

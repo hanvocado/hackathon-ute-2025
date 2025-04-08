@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -27,15 +28,21 @@ import java.util.List;
 class FoodHistoryController {
     FoodHistoryService foodHistoryService;
     @GetMapping
-    public ApiResponse<FoodHistoryTotalResponse> getFoodHistoryByDate(LocalDate date) {
+    public ApiResponse<FoodHistoryTotalResponse> getFoodHistoryByDate(Date date) {
         return ApiResponse.<FoodHistoryTotalResponse>builder()
                 .result(foodHistoryService.getFoodHistoryByDate(date))
                 .build();
     }
     @GetMapping("/static")
-    public ApiResponse<List<FoodHistoryTotalResponse>> getFoodHistoryStatic(LocalDate from, LocalDate to) {
+    public ApiResponse<List<FoodHistoryTotalResponse>> getFoodHistoryStatic(Date from, Date to) {
         return ApiResponse.<List<FoodHistoryTotalResponse>>builder()
                 .result(foodHistoryService.getFoodHistoryStatic(from, to))
+                .build();
+    }
+    @GetMapping("/streak")
+    public ApiResponse<Integer> getFoodHistoryStreak(){
+        return ApiResponse.<Integer>builder()
+                .result(foodHistoryService.findDaysUntilFirstNullFoodHistory())
                 .build();
     }
 }

@@ -26,4 +26,5 @@ public class Food {
     private double sugar;
     private double protein;
     private double fiber;
+    private String imageUrl;
 }

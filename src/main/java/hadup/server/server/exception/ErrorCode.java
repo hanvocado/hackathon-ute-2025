@@ -19,6 +19,7 @@ public enum ErrorCode {
     OTP_LIMIT_TIME(1010, "You need to wait 30s for new OTP", HttpStatus.BAD_REQUEST),
     TOPIC_NOTEXISTED(1011, "Bài viết đã bị xoá", HttpStatus.NOT_FOUND),
     FOOD_NOTEXISTED(1012, "Không nhận ra được food", HttpStatus.NOT_FOUND),
+    PLAN_NOTEXISTED(1013, "Không nhận ra được Plan", HttpStatus.NOT_FOUND),
     ;
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;
