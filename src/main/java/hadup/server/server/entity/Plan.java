@@ -7,21 +7,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Users")
-public class User {
+public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
-    private String email;
-    private String name;
     @JsonIgnore
-    private String password;
+    private String id;
+    int calories;
+    double fat;
+    double sugar;
+    double protein;
+    double fiber;
+    @Column(length = 1000)
+    @JsonIgnore
+    String reason;
 
+    @OneToOne
+    @JsonIgnore
+    private User user;
 }

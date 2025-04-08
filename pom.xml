@@ -31,6 +31,11 @@
     </properties>
     <dependencies>
         <dependency>
+            <groupId>org.commonmark</groupId>
+            <artifactId>commonmark</artifactId>
+            <version>0.21.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -62,11 +67,11 @@
             <artifactId>mapstruct</artifactId>
             <version>1.6.0</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.security</groupId>-->
-        <!--            <artifactId>spring-security-crypto</artifactId>-->
-        <!--            &lt;!&ndash;			<version>6.3.3</version>&ndash;&gt;-->
-        <!--        </dependency>-->
+                <dependency>
+                    <groupId>org.springframework.security</groupId>
+                    <artifactId>spring-security-crypto</artifactId>
+                    <!--			<version>6.3.3</version>-->
+                </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server -->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->

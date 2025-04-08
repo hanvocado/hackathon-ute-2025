@@ -8,15 +8,15 @@ spring:
     max-file-size: 100MB
     max-request-size: 1000MB
   mail:
-    username: hcmutesending@gmail.com
-    password: bbut pbzy uiva pged
+    username: sending060425@gmail.com
+    password: qrwb kauf juku gyqt
     properties:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
     host: smtp.gmail.com
     port: 587
   datasource:
-    url: "jdbc:mysql://localhost:3307/hcmuteforums"
+    url: "jdbc:mysql://localhost:3307/hackathon"
     username: root
     password: root
   jpa:
@@ -30,4 +30,4 @@ spring:
 jwt:
   signerKey: "b4ISo6+PT1fY8eppQ564SXabONN945cjuPYa0mTOmPrThHVxEnH7+xxE5RFJCqtk"
 upload:
-  dir: upload/topics/
+  dir: upload/img/
